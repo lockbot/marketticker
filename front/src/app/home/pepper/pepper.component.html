@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-tab-group>
+    <mat-tab label="All"><app-table [dataSource]="dataSource"></app-table></mat-tab>
+    <mat-tab label="FX"><app-table [dataSource]="dataSourceFX"></app-table></mat-tab>
+    <mat-tab label="Commodities"><app-table [dataSource]="dataSourceCommodities"></app-table></mat-tab>
+    <mat-tab label="Cryptos"><app-table [dataSource]="dataSourceCryptos"></app-table></mat-tab>
+    <mat-tab label="Indices"><app-table [dataSource]="dataSourceIndices"></app-table></mat-tab>
+    <mat-tab label="Shares"><app-table [dataSource]="dataSourceShares"></app-table></mat-tab>
+    <mat-tab label="ETFs"><app-table [dataSource]="dataSourceETFs"></app-table></mat-tab>
+  </mat-tab-group>
+</mat-card>

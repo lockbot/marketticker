@@ -4,7 +4,7 @@ import * as Rj from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PepperApiClientService {
+export class FixerApiClientService {
 
   constructor() { }
 
