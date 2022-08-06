@@ -1,5 +1,5 @@
 import { DataSource } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { catchError, map, Observable, of, ReplaySubject, Subscription, timer } from 'rxjs';
 import { HttpService } from 'src/app/services/http.service';
 import { Currency } from '../currency';
@@ -9,7 +9,7 @@ import { Currency } from '../currency';
   templateUrl: './pepper.component.html',
   styleUrls: ['./pepper.component.scss']
 })
-export class PepperComponent implements OnInit {
+export class PepperComponent implements OnInit, OnDestroy {
   dataSource = new PepperDataSource([]);
   dataSourceFX = new PepperDataSource([]);
   dataSourceCommodities = new PepperDataSource([]);
@@ -18,7 +18,7 @@ export class PepperComponent implements OnInit {
   dataSourceShares = new PepperDataSource([]);
   dataSourceETFs = new PepperDataSource([]);
   
-  timerSubscription: Subscription;
+  timerSubscription?: Subscription;
 
   same = "new";
 
@@ -28,6 +28,9 @@ export class PepperComponent implements OnInit {
   constructor(
     private service: HttpService
   ) {
+  }
+
+  ngOnInit(): void {
     this.timerSubscription = timer(0, 750).pipe(
       map(() => {
         this.loadData();
@@ -40,10 +43,11 @@ export class PepperComponent implements OnInit {
         this.dataSourceETFs.setData(this.pepperList.filter(pepper => pepper.name == "Global_Uranium_ETF_(URA.P)" || pepper.name == "ARK_Innovation_ETF_(ARKK.P)" || pepper.name == "Lithium_ETF_(LIT.P)" || pepper.name == "India_50_ETF_(INDY.O)" || pepper.name == "Gold_Miners_ETF_(GDX.P)"));
       })
     ).subscribe();
+    this.firstLoadData();
   }
 
-  ngOnInit(): void {
-    this.firstLoadData();
+  ngOnDestroy(): void {
+    this.timerSubscription?.unsubscribe();
   }
 
   firstLoadData(): void{
@@ -76,6 +80,7 @@ export class PepperComponent implements OnInit {
     .pipe(
       catchError(error => {
         console.log('Erro ao carregar cursos.');
+        console.error(error);
         return of();
       })
     );

@@ -1,54 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { FixerApiClientService } from 'src/app/services/fixer-api-client.service';
-import { FixerTranslatorService } from 'src/app/services/fixer-translator.service';
 
 export interface PeriodicElement {
   name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  bid: number;
+  ask: number;
+  spread: number;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {bid: 1, name: 'Hydrogen', ask: 1.0079, spread:2},
+  {bid: 2, name: 'Helium', ask: 4.0026, spread: 2},
+  {bid: 3, name: 'Lithium', ask: 6.941, spread: 2},
+  {bid: 4, name: 'Beryllium', ask: 9.0122, spread: 2},
+  {bid: 5, name: 'Boron', ask: 10.811, spread: 2},
+  {bid: 6, name: 'Carbon', ask: 12.0107, spread: 2},
+  {bid: 7, name: 'Nitrogen', ask: 14.0067, spread:2},
+  {bid: 8, name: 'Oxygen', ask: 15.9994, spread: 2},
+  {bid: 9, name: 'Fluorine', ask: 18.9984, spread: 2},
+  {bid: 10, name: 'Neon', ask: 20.1797, spread: 2},
 ];
 
 @Component({
   selector: 'app-fixer',
   templateUrl: './fixer.component.html',
-  styleUrls: ['./fixer.component.scss'],
-  providers: [FixerApiClientService, FixerTranslatorService],
+  styleUrls: ['./fixer.component.scss']
 })
 export class FixerComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['bid', 'name', 'ask', 'spread'];
   dataSource = ELEMENT_DATA;
 
-  constructor(private fixerTranslatorService: FixerTranslatorService) {
-    fixerTranslatorService.messages?.subscribe((msg) => {
-      console.log('Response recieved from websocket: ' + msg);
-    });
+  constructor() {
+    
   }
 
   ngOnInit(): void {
-  }
-
-  private message = {
-    user: 'Husnain',
-    messageContent: 'Hello World!',
-  };
-
-  sendMessage() {
-    console.log('new message from the client: ', this.message);
-    this.fixerTranslatorService.messages?.next(this.message);
-    this.message.messageContent = '';
   }
 }

@@ -6,23 +6,36 @@ import { FixerComponent } from './fixer/fixer.component';
 import { PepperComponent } from './pepper/pepper.component';
 
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatCardModule} from '@angular/material/card';
-import {MatTableModule} from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
 import { TableComponent } from './table/table.component';
-
+import { TestComponent } from './test/test.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule }   from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     FixerComponent,
     PepperComponent,
     TableComponent,
+    TestComponent,
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     MatTabsModule,
     MatCardModule,
-    MatTableModule
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class HomeModule { }

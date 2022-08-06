@@ -1,0 +1,10 @@
+<form (submit)="sendMessage()" class="example-form">
+    <h2 style="padding-top: 1rem">Test page. Send Message by clicking button!</h2>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Message</mat-label>
+        <input matInput placeholder="Write a message" [(ngModel)]="inputTest" name="inputTest" value="msg inicial">
+    </mat-form-field>
+    <button mat-mini-fab color="primary" aria-label="Send message">
+        <mat-icon>connect_without_contact</mat-icon>
+    </button>
+</form>
