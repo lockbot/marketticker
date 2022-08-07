@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { TestApiClientService } from 'src/app/services/test-api-client.service';
+import { ApiClientService } from 'src/app/services/api-client.service';
 import { TestTranslatorService } from 'src/app/services/test-translator.service';
 
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss'],
-  providers: [TestApiClientService, TestTranslatorService]
+  providers: [ApiClientService, TestTranslatorService]
 })
 export class TestComponent {
 
-  public inputTest = 'coe';
+  public inputTest = 'msg inicial';
 
   constructor(private testTranslatorService: TestTranslatorService) {
     testTranslatorService.messages?.subscribe((msg) => {

@@ -1,2 +1,2 @@
 # marketticker
-Market Ticker to test my abilities
+Market Ticker to test my skills

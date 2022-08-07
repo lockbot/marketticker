@@ -116,7 +116,7 @@ export class PepperComponent implements OnInit, OnDestroy {
           else if(data[it].spread < this.pepperList[i].spread)
             this.pepperList[i].spreadClass = "down";
       
-          this.pepperList[i].spread = data[it].ask - data[it].bid;
+          this.pepperList[i].spread = data[it].spread;
         }
         i++;
       }
